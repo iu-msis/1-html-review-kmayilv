@@ -39,74 +39,82 @@
         </div>
       </div>
     </nav>
-
-    <table class="sortable">
+    <h1>Check out this sortable table for my favorite books!</h1>
+<body>
+    <table id = "SortableTable" class = "table table-hover">
         <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Pages</th>
-            <th scope="col">Author</th>
-            <th scope="col">Price</th>
-            <th scope="col">Year</th>
-            <th scope="col">Publisher</th>
+            <th scope="col" class = "TableHeader">Title</th>
+            <th scope="col" class = "TableHeader">Pages</th>
+            <th scope="col" class = "TableHeader">Author</th>
+            <th scope="col" class = "TableHeader">Price (in $USD)</th>
+            <th scope="col" class = "TableHeader">Year</th>
+            <th scope="col" class = "TableHeader">Publisher</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Sapiens</th>
+            <th scope="row" class = "RowSelection">Sapiens</th>
             <td>443</td>
             <td>Yuval Noah Harari</td>
-            <td>$15</td>
+            <td>15</td>
             <td>2011</td>
             <td>Harper Collins</td>
           <tr>
-            <th scope="row">48 Laws of Power</th>
+            <th scope="row" class = "RowSelection">48 Laws of Power</th>
             <td>480</td>
             <td>Robert Greene</td>
-            <td>$15</td>
+            <td>15</td>
             <td>1998</td>
             <td>Viking Press</td>
           </tr>
           <tr>
-            <th scope="row">The Bible</th>
+            <th scope="row" class = "RowSelection">The Bible</th>
             <td>1200</td>
             <td>Jesus</td>
-            <td>$25</td>
+            <td>25</td>
             <td>1200BC</td>
             <td>Zondervan</td>
           </tr>
           <tr>
-            <th scope="row">The Joy of X</th>
+            <th scope="row" class = "RowSelection">The Joy of X</th>
             <td>336</td>
             <td>Steven Strogatz</td>
-            <td>$15</td>
+            <td>15</td>
             <td>2013</td>
             <td>Mariner Books</td>
           </tr>
           <tr>
-            <th scope="row">Harry Potter and The Sorcers Stone</th>
+            <th scope="row" class = "RowSelection">Harry Potter and The Sorcers Stone</th>
             <td>223</td>
             <td>JK Rowling</td>
-            <td>$15</td>
+            <td>15</td>
             <td>1997</td>
             <td>Bloomsbury</td>
           </tr>
           <tr>
-            <th scope="row">Hungry, Hungry Sharks</th>
+            <th scope="row" class = "RowSelection">Hungry, Hungry Sharks</th>
             <td>45</td>
             <td>Joanna Cole</td>
-            <td>$5</td>
+            <td>5</td>
             <td>1986</td>
             <td>Step-Into-Reading</td>
           </tr>
           <tr>
-            <th scope="row">Wealth of Nations</th>
+            <th scope="row" class = "RowSelection">Wealth of Nations</th>
             <td>950</td>
             <td>Adam Smith</td>
-            <td>$25</td>
+            <td>25</td>
             <td>1776</td>
             <td>W. Strahan and T. Cadell, London</td>
           </tr>
         </tbody>
       </table>
-  
+
+      <script src = "js/tablesort.js">
+
+      </script>
+  <script>
+    new Tablesort(document.getElementById('SortableTable'));
+  </script>
+</body>
