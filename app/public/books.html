@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="CSS/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://unpkg.com/vue@next"></script>
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +45,8 @@
   </head>
   <body>
     <h1>Here's some of my favorite books!</h1>
-    <table class="table">
+  <div id = "bookApp">
+    <table id = "booksTable" class="table">
       <thead>
         <tr>
           <th scope="col">Title</th>
@@ -55,64 +57,19 @@
           <th scope="col">Publisher</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-for="b in books">
         <tr>
-          <th scope="row">Sapiens</th>
-          <td>443</td>
-          <td>Yuval Noah Harari</td>
-          <td>$15</td>
-          <td>2011</td>
-          <td>Harper Collins</td>
-        <tr>
-          <th scope="row">48 Laws of Power</th>
-          <td>480</td>
-          <td>Robert Greene</td>
-          <td>$15</td>
-          <td>1998</td>
-          <td>Viking Press</td>
-        </tr>
-        <tr>
-          <th scope="row">The Bible</th>
-          <td>1200</td>
-          <td>Jesus</td>
-          <td>$25</td>
-          <td>1200BC</td>
-          <td>Zondervan</td>
-        </tr>
-        <tr>
-          <th scope="row">The Joy of X</th>
-          <td>336</td>
-          <td>Steven Strogatz</td>
-          <td>$15</td>
-          <td>2013</td>
-          <td>Mariner Books</td>
-        </tr>
-        <tr>
-          <th scope="row">Harry Potter and The Sorcers Stone</th>
-          <td>223</td>
-          <td>JK Rowling</td>
-          <td>$15</td>
-          <td>1997</td>
-          <td>Bloomsbury</td>
-        </tr>
-        <tr>
-          <th scope="row">Hungry, Hungry Sharks</th>
-          <td>45</td>
-          <td>Joanna Cole</td>
-          <td>$5</td>
-          <td>1986</td>
-          <td>Step-Into-Reading</td>
-        </tr>
-        <tr>
-          <th scope="row">Wealth of Nations</th>
-          <td>950</td>
-          <td>Adam Smith</td>
-          <td>$25</td>
-          <td>1776</td>
-          <td>W. Strahan and T. Cadell, London</td>
-        </tr>
+            <th scope="row">{{ b.title }}</th>
+            <td>{{ b.pages }}</td>
+            <td>{{ b.author }}</td>
+            <td>{{ b.price }}</td>
+            <td>{{ b.year_published }}</td>
+            <td>{{ b.publisher }}</td>
+          </tr>
+
       </tbody>
     </table>
+  
 
     <a href="https://images-na.ssl-images-amazon.com/images/I/712nKYvTXxL.jpg">  
     <img src="img/JoyOfX.jpeg" class="img-thumbnail" width = 200px alt="JoyOfX">
@@ -126,36 +83,37 @@
     <img src="img/WealthOfNations.jpeg" class="img-thumbnail" width = 200px alt="WON"> 
     </a>
 
-    <form>
-      <div class="mb-3">
-        <label for="BookTitle" class="form-label">Title</label>
-        <input type="Title" class="form-control" id="BookTitle" aria-describedby="TitleInput">
-        <div id="TitleInput" class="form-text">Submit a book you want me to read!</div>
+    <form v-on:submit.prevent="postNewBook">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" v-model="bookForm.title" >
       </div>
-      <div class="mb-3">
-        <label for="BookPages" class="form-label">Pages</label>
-        <input type="pages" class="form-control" id="BookPages">
+      <div class="form-group">
+        <label for="pages">Pages</label>
+        <input type="text" class="form-control" id="pages" v-model="bookForm.pages">
       </div>
-      <div class="mb-3">
-        <label for="BookAuthor" class="form-label">Author</label>
-        <input type="author" class="form-control" id="BookAuthor">
-      </div>
-      <div class="mb-3">
-        <label for="BookPrice" class="form-label">Price</label>
-        <input type="price" class="form-control" id="BookPrice">
-      </div>
-      <div class="mb-3">
-        <label for="BookYear" class="form-label">Pages</label>
-        <input type="price" class="form-control" id="BookYear">
-      </div>
-      <div class="mb-3">
-        <label for="BookPublisher" class="form-label">Pages</label>
-        <input type="publisher" class="form-control" id="BookPublisher">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-
+      <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" class="form-control" id="author" v-model="bookForm.author">
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="text" class="form-control" id="price" v-model="bookForm.price">
+        </div>
+        <div class="form-group">
+          <label for="yr">Year Published</label>
+          <input type="text" class="form-control" id="yr" v-model="bookForm.yr">
+        </div>
+        <div class="form-group">
+          <label for="publisher">Publisher</label>
+          <input type="text" class="form-control" id="publisher" v-model="bookForm.publisher">
+        </div>
+        <br>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
-
+    </div>
     <p> Sources </p>
 <p> "Sapiens, https://images-na.ssl-images-amazon.com/images/I/41+lolL22gL._SX314_BO1,204,203,200_.jpg"</p>
 <p> "Joy Of X,  https://images-na.ssl-images-amazon.com/images/I/712nKYvTXxL.jpg"</p>
@@ -164,7 +122,11 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
+    <script src="js/tablesort.js"></script>
+    <script>
+      new Tablesort(document.getElementById('booksTable'));
+    </script>
+    <script src="js/books.js"></script>
  
   </body>
 </html>
